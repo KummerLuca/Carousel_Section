@@ -3,12 +3,12 @@ import { getFirestore, collection, getDocs } from "https://www.gstatic.com/fireb
 
 // Deine echte Firebase-Konfiguration hier eintragen
 const firebaseConfig = {
-  apiKey: "DEIN_API_KEY",
-  authDomain: "DEIN_PROJEKT.firebaseapp.com",
-  projectId: "DEIN_PROJEKT_ID",
-  storageBucket: "DEIN_PROJEKT.appspot.com",
-  messagingSenderId: "DEINE_ID",
-  appId: "DEINE_APP_ID"
+  apiKey: "AIzaSyAOVWC3-WauskIzFRzMbNtl8p3bwidYoN8",
+  authDomain: "dashbaord-15fb6.firebaseapp.com",
+  projectId: "dashbaord-15fb6",
+  storageBucket: "dashbaord-15fb6.firebasestorage.app",
+  messagingSenderId: "504500013021",
+  appId: "1:504500013021:web:8d18fc4f444a2b60211834"
 };
 
 const app = initializeApp(firebaseConfig);
