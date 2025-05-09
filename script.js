@@ -56,99 +56,17 @@ const githubSvg = `
 const ProjectInfoText = document.getElementById("ProjectInfo");
 ProjectInfoText.innerText = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio, cupiditate recusandae qui perferendis ad quisquam! Impedit, facilis quaerat in ducimus porro, neque animi qui rem id nobis veritatis quia doloribus."
 
-const projects = [
-  {   
-    image: "Projekt_1_Header.png",
-    title: "PROJECT 1",
-    features: ["HTML", "CSS", "JavaScript"],
-    description: "This is the first projectLorem ipsum dolor sit amet consectetur adipisicing elit. Earum modi quam beatae exercitationem mollitia. Vel saepe quas totam iste dolorem cumque tempore aliquam ex provident officia.Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum modi quam beatae exercitationem mollitia. Vel saepe quas totam iste dolorem cumque tempore aliquam ex provident officia.",
-    link: "https://github.com/KummerLuca/Portfolio",
-    link2:"https://lucadev.netlify.app/",
-    btn1: "View Code",
-    btn1svg: githubSvg,
-    btn2: "View Demo",
-    btn2svg: liveSvg,
-},
-{
-    image: "https://picsum.photos/200/300",
-    title: "Project 2",
-    features: ["HTML", "CSS", "JavaScript"],
-    description: "This is the second project",
-    link: "https://www.google.com",
-    btn1: "View Code",
-    btn1svg: githubSvg,
-    btn2: "View Demo",
-    btn2svg: liveSvg,
-},
-{
-    image: "https://picsum.photos/200/300",
-    title: "Project 3",
-    features: ["HTML", "CSS"],
-    description: "This is the blablaba project",
-    link: "https://www.google.com",
-    btn1: "View Code",
-    btn1svg: githubSvg,
-    btn2: "View Demo",
-    btn2svg: liveSvg,
-},
-{
-    image: "https://picsum.photos/200/300",
-    title: "Project 4",
-    features: ["HTML", "CSS", "JavaScript"],
-    description: "This is the second project",
-    link: "https://www.google.com",
-    btn1: "View Code",
-    btn1svg: githubSvg,
-    btn2: "View Demo",
-    btn2svg: liveSvg,
-},
-{
-  image: "https://picsum.photos/200/300",
-  title: "Project 5",
-  features: ["HTML", "CSS", "JavaScript"],
-  description: "This is the second project",
-  link: "https://www.google.com",
-  btn1: "View Code",
-  btn1svg: githubSvg,
-  btn2: "View Demo",
-  btn2svg: liveSvg,
-},
-{
-  image: "https://picsum.photos/200/300",
-  title: "Project 6",
-  features: ["HTML", "CSS", "JavaScript"],
-  description: "This is the second project",
-  link: "https://www.google.com",
-  btn1: "View Code",
-  btn1svg: githubSvg,
-  btn2: "View Demo",
-  btn2svg: liveSvg,
-},
-{
-image: "Projekt_1_Header.png",
-    title: "PROJECT 7",
-    features: ["HTML", "CSS", "JavaScript"],
-    description: "This is the first projectLorem ipsum dolor sit amet consectetur adipisicing elit. Earum modi quam beatae exercitationem mollitia. Vel saepe quas totam iste dolorem cumque tempore aliquam ex provident officia.Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum modi quam beatae exercitationem mollitia. Vel saepe quas totam iste dolorem cumque tempore aliquam ex provident officia.",
-    link: "https://github.com/KummerLuca/Portfolio",
-    link2:"https://lucadev.netlify.app/",
-    btn1: "View Code",
-    btn1svg: githubSvg,
-    btn2: "View Demo",
-    btn2svg: liveSvg,
-},
-{
-  image: "Projekt_1_Header.png",
-      title: "PROJECT 8",
-      features: ["HTML", "CSS", "JavaScript"],
-      description: "This is the first projectLorem ipsum dolor sit amet consectetur adipisicing elit. Earum modi quam beatae exercitationem mollitia. Vel saepe quas totam iste dolorem cumque tempore aliquam ex provident officia.Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum modi quam beatae exercitationem mollitia. Vel saepe quas totam iste dolorem cumque tempore aliquam ex provident officia.",
-      link: "https://github.com/KummerLuca/Portfolio",
-      link2:"https://lucadev.netlify.app/",
-      btn1: "View Code",
-      btn1svg: githubSvg,
-      btn2: "View Demo",
-      btn2svg: liveSvg,
-  },
-];
+import { getProjects } from './dataManager.js';
+
+let projects = [];
+
+async function start() {
+  projects = await getProjects();
+  renderProjects();
+}
+
+start();
+
 
 function renderProjects(){
 
@@ -205,14 +123,14 @@ btnWrapper.classList.add("project-btn-wrapper");
 
 const btnSec = document.createElement("a");
 btnSec.classList.add("project-btn-secondary");
-btnSec.innerHTML = `${project.btn1svg}<span>${project.btn1}</span>`;
+btnSec.innerHTML = `${githubSvg}<span>${project.btn1}</span>`;
 btnSec.href = project.link;
 btnSec.target = "_blank";
 
 
 const btnPri = document.createElement("a");
 btnPri.classList.add("project-btn-primary");
-btnPri.innerHTML = `${project.btn2svg}<span>${project.btn2}</span>`;
+btnPri.innerHTML = `${liveSvg}<span>${project.btn2}</span>`;
 btnPri.href = project.link2;
 btnPri.target = "_blank";
 
@@ -275,8 +193,6 @@ setTimeout(function(descEl, contentEl, btnWrapperEl){
 
 });
 
-}
-renderProjects();
 
 
 // Carousell
@@ -287,8 +203,8 @@ const btnRight = document.querySelector(".carousel-btn.right");
 
 const scrollByCard = () => {
   const card = track.querySelector(".project-card");
-  if (!card) return 300; // fallback
-  return card.offsetWidth + 40; // card + gap
+  if (!card) return 300;
+  return card.offsetWidth + 40;
 };
 
 btnLeft.addEventListener("click", () => {
@@ -328,7 +244,4 @@ track.addEventListener("mousemove", (e) => {
   const walk = (x - startX) * 1.5;
   track.scrollLeft = scrollLeft - walk;
 });
-
-
-
-
+}
